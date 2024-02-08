@@ -36,21 +36,19 @@ local M = {
     {
       "hrsh7th/cmp-nvim-lua",
     },
-  },
+  }
 }
-
 function M.config()
   local cmp = require "cmp"
   local luasnip = require "luasnip"
-  require("luasnip/loaders/from_vscode").lazy_load()
+  require("luasnip.loaders.from_vscode").lazy_load()
 
   vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
   vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
   vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
-
   local check_backspace = function()
     local col = vim.fn.col "." - 1
-    return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
+    return col == 0 or vim.fn.getline("."):sub(col, col):match "%s" -- For vscode snippets
   end
 
   local icons = require "user.icons"
@@ -158,7 +156,7 @@ function M.config()
       },
     },
     experimental = {
-      ghost_text = false,
+      ghost_text = true,
     },
   }
 end
