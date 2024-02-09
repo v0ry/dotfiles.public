@@ -32,7 +32,6 @@ spec "user.toggleterm"
 spec "user.live-server"
 spec "user.vimtex"
 spec "user.coderunner"
-
 -- Extra plugins
 spec "user.extras.copilot"
 spec "user.extras.ufo"

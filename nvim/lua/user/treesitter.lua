@@ -9,8 +9,8 @@ local M = {
 function M.config()
   require("nvim-treesitter.configs").setup {
     ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "python", "c", "cpp", "css", "html", "javascript" },
-    ignore_install = { "latex"},
-    highlight = { enable = true, },
+    ignore_install = { "latex"}, -- Don't install parsers with filetypes in this list
+    highlight = { enable = true, disable = { "latex" } }, -- Don't enable synxtax highlighting for latex
     auto_install = true,
     sync_install = false, -- install synchronously
     indent = { enable = true },

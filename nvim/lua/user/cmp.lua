@@ -36,6 +36,17 @@ local M = {
     {
       "hrsh7th/cmp-nvim-lua",
     },
+    {
+      "iurimateus/luasnip-latex-snippets.nvim",
+      -- vimtex isn't required if using treesitter
+      branch = "fix/lazy-loading",
+      dependencies = { "L3MON4D3/LuaSnip", "lervag/vimtex" },
+      ft = {"tex", "markdown" },
+      config = function()
+        require'luasnip-latex-snippets'.setup({ use_treesitter = true })
+        -- or setup({ use_treesitter = true })
+      end,
+    },
   },
 }
 
