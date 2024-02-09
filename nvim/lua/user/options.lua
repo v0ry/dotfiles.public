@@ -37,52 +37,14 @@ vim.opt.scrolloff = 0
 vim.opt.sidescrolloff = 8
 vim.opt.guifont = "monospace:h17" -- the font used in graphical neovim applications
 vim.opt.title = false
--- vim.opt.colorcolumn = "80"
+-- colorcolumn = "80",
 -- colorcolumn = "120",
-vim.opt.textwidth = 80 -- set textwidth to 80
 vim.opt.fillchars = vim.opt.fillchars + "eob: "
 vim.opt.fillchars:append {
   stl = " ",
 }
 
--- Format Options {{{ 
-
-vim.opt.formatoptions = table.concat(
-                            {
-     '1',
-      'q', -- continue comments with gq"
-      'c', -- Auto-wrap comments using textwidth
-      'r', -- Continue comments when pressing Enter
-      'n', -- Recognize numbered lists
-      '2', -- Use indent from 2nd line of a paragraph
-      't', -- autowrap lines using text width value
-      'j', -- remove a comment leader when joining lines.
-      -- Only break if the line was not longer than 'textwidth' when the insert
-      -- started and only at a white character that has been entered during the
-      -- current insert command.
-      'lv'
-    }
-                    )
---- }}}
-
--- Message output on vim actions {{{
-
-vim.opt.shortmess = table.concat(
-                        {
-      't', -- truncate file messages at start
-      'A', -- ignore annoying swap file messages
-      'o', -- file-read message overwrites previous
-      'O', -- file-read message overwrites previous
-      'T', -- truncate non-file messages in middle
-      'f', -- (file x of x) instead of just (x of x
-      'F', -- Don't give file info when editing a file
-      's',
-      'c',
-      'W' -- Dont show [w] or written when writing
-    }
-                  )
-
--- }}}
+vim.opt.shortmess:append "c"
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]

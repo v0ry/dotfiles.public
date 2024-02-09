@@ -1,3 +1,5 @@
+-- Userd For Syntax Highlighting
+-- https://linovox.com/nvim-treesitter-syntax-highlighting-in-neovim/
 local M = {
   "nvim-treesitter/nvim-treesitter",
   event = { "BufReadPost", "BufNewFile" },
@@ -6,11 +8,26 @@ local M = {
 
 function M.config()
   require("nvim-treesitter.configs").setup {
-    ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "python", "c", "cpp", "css", "html", "latex" },
-    highlight = { enable = true },
+    ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "python", "c", "cpp", "css", "html", "javascript" },
+    ignore_install = { "latex"},
+    highlight = { enable = true, },
     auto_install = true,
-    sync_install = false,
+    sync_install = false, -- install synchronously
     indent = { enable = true },
+    rainbow = {
+      enable = true,
+      extended_mode = true, -- Highlight also non-parentheses delimiters, boolean or table: lang -> boolean
+      max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
+    },
+    incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = "gnn",
+        node_incremental = "grn",
+        scope_incremental = "grc",
+        node_decremental = "grm",
+      },
+    },
   }
 end
 

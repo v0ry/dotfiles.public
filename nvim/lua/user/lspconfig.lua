@@ -14,8 +14,6 @@ local function lsp_keymaps(bufnr)
   keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
   keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
   keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-  keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
   keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 end
 
@@ -65,7 +63,7 @@ function M.config()
   local lspconfig = require "lspconfig"
   local icons = require "user.icons"
 
-  local servers = {
+  local servers = { -- Names for servers come from lsp you find them in :Mason this is where syntax highlighting comes form 
     "lua_ls",
     "cssls",
     "html",
@@ -76,6 +74,7 @@ function M.config()
     "bashls",
     "jsonls",
     "yamlls",
+    "emmet_language_server",
   }
 
   local default_diagnostic_config = {

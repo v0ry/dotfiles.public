@@ -27,7 +27,7 @@ local M = {
       event = "InsertEnter",
     },
     {
-      "L3MON4D3/LuaSnip",
+      "L3MON4D3/LuaSnip", -- Snippets engine
       event = "InsertEnter",
       dependencies = {
         "rafamadriz/friendly-snippets",
@@ -36,27 +36,35 @@ local M = {
     {
       "hrsh7th/cmp-nvim-lua",
     },
-  }
+  },
 }
+
 function M.config()
   local cmp = require "cmp"
   local luasnip = require "luasnip"
-  require("luasnip.loaders.from_vscode").lazy_load()
+  require("luasnip/loaders/from_vscode").lazy_load() -- This is for loading friendly-snippets
+  require("luasnip/loaders/from_vscode").load {  -- require personal snippets
+      paths = {
+        "~/.config/nvim/snippets",
+        "~/.config/nvim/snippets/latex",
+      },
+    }
 
   vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
   vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
   vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
+
   local check_backspace = function()
     local col = vim.fn.col "." - 1
-    return col == 0 or vim.fn.getline("."):sub(col, col):match "%s" -- For vscode snippets
+    return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
   end
 
   local icons = require "user.icons"
-
+  
   cmp.setup {
-    snippet = {
+     snippet = {
       expand = function(args)
-        luasnip.lsp_expand(args.body) -- For `luasnip` users.
+        require'luasnip'.lsp_expand(args.body)
       end,
     },
     mapping = cmp.mapping.preset.insert {
@@ -156,7 +164,7 @@ function M.config()
       },
     },
     experimental = {
-      ghost_text = true,
+      ghost_text = false,
     },
   }
 end

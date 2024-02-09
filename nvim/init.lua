@@ -2,6 +2,8 @@ require "user.launch"
 require "user.options"
 require "user.keymaps"
 require "user.autocmds"
+
+-- user 
 spec "user.colorscheme"
 spec "user.devicons"
 spec "user.treesitter"
@@ -30,4 +32,9 @@ spec "user.toggleterm"
 spec "user.live-server"
 spec "user.vimtex"
 spec "user.coderunner"
+
+-- Extra plugins
+spec "user.extras.copilot"
+spec "user.extras.ufo"
+
 require "user.lazy"

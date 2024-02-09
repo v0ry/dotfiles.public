@@ -1,3 +1,4 @@
+-- Last Change: 2021-01-31 16:57:52
 local M = {
   "nvimtools/none-ls.nvim",
   dependencies = {
@@ -12,7 +13,7 @@ function M.config()
   local diagnostics =  null_ls.builtins.diagnostics
 
   null_ls.setup {
-    debug = false,
+    debug = true,
     sources = {
       formatting.stylua,
       formatting.prettier,
@@ -22,8 +23,11 @@ function M.config()
       --   -- extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" },
       -- },
       -- formatting.eslint,
+      -- prettierd 
+
+
       null_ls.builtins.diagnostics.flake8,
-      -- diagnostics.flake8,
+      diagnostics.flake8,
       null_ls.builtins.completion.spell,
     },
   }

@@ -6,7 +6,6 @@ local M = {
 }
 
 function M.config() 
-  require('live-server').setup(opts)
 end
   
 return M

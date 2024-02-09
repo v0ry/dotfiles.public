@@ -1,3 +1,4 @@
+-- Display a file explorer in a sidebar
 local M = {
   "nvim-tree/nvim-tree.lua",
   event = "VeryLazy",

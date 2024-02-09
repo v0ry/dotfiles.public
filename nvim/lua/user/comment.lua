@@ -1,3 +1,4 @@
+-- Does, comment toggling and context aware comment strings
 local M = {
   "numToStr/Comment.nvim",
   lazy = false,
