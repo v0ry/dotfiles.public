@@ -38,29 +38,30 @@ local M = {
     },
     {
       "iurimateus/luasnip-latex-snippets.nvim",
-      -- vimtex isn't required if using treesitter
-      branch = "fix/lazy-loading",
-      dependencies = { "L3MON4D3/LuaSnip", "lervag/vimtex" },
-      ft = {"tex", "markdown" },
-      config = function()
-        require'luasnip-latex-snippets'.setup({ use_treesitter = true })
-        -- or setup({ use_treesitter = true })
-      end,
-    },
+      event = "InsertEnter",
+      dependencies = {
+        {
+          "L3MON4D3/LuaSnip",
+          event = "InsertEnter",
+        },
+        {
+          "lervag/vimtex",
+          event = "InsertEnter",
+        },
+      }, 
+    }
   },
 }
 
 function M.config()
   local cmp = require "cmp"
-  local luasnip = require "luasnip"
+  local luasnip = require "luasnip" -- This line requires luasnip.lua
   require("luasnip/loaders/from_vscode").lazy_load() -- This is for loading friendly-snippets
-  require("luasnip/loaders/from_vscode").load {  -- require personal snippets
-      paths = {
-        "~/.config/nvim/snippets",
-        "~/.config/nvim/snippets/latex",
-      },
-    }
-
+  require("luasnip.loaders.from_lua").load({
+    paths = {
+      vim.fn.expand("~/.config/nvim/lua/user/luasnip-latex-snippets.lua")
+    },
+  })
   vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
   vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
   vim.api.nvim_set_hl(0, "CmpItemKindEmoji", { fg = "#FDE030" })
@@ -129,9 +130,10 @@ function M.config()
       format = function(entry, vim_item)
         vim_item.kind = icons.kind[vim_item.kind]
         vim_item.menu = ({
+          copilot = "",
+          luasnip = "",
           nvim_lsp = "",
           nvim_lua = "",
-          luasnip = "",
           buffer = "",
           path = "",
           emoji = "",

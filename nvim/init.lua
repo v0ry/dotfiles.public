@@ -32,8 +32,12 @@ spec "user.toggleterm"
 spec "user.live-server"
 spec "user.vimtex"
 spec "user.coderunner"
+spec "user.luasnip"
 -- Extra plugins
 spec "user.extras.copilot"
 spec "user.extras.ufo"
 
+-- ftplugin 
+spec "user.ftplugin.obsidian"
+spec "user.luasnip-latex-snippets" -- I Want to configure it myself
 require "user.lazy"
